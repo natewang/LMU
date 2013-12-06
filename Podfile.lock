@@ -1,0 +1,10 @@
+PODS:
+  - RESideMenu (3.3)
+
+DEPENDENCIES:
+  - RESideMenu
+
+SPEC CHECKSUMS:
+  RESideMenu: b3bff6a03d44aa64099acf424114bdd385d8312a
+
+COCOAPODS: 0.27.1

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="12F45" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="event_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_datetime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_field" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_img_thumb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="event_state" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="event_user" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="org_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="event" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="api_user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="city_tags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="role_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_age" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_birthday" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_fromcountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_fromcountry_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_livecity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_livecity_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_livecountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_sig" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Event" inverseName="user" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Event" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="User" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
