@@ -79,15 +79,33 @@
             NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             NSEnumerator *enumerator = [dicData objectEnumerator];
             id key;
-            BOOL change = NO;//判断是狗需要存储
+            BOOL change = YES;//判断是否需要存储
 
             while (key = [enumerator nextObject]) {
                 
                 NSString *currentEventID = [key valueForKey:@"event_id"];
 //                判断下载的活动是否已经储存了
+        
+                NSArray *arrayExistEventID = [[NSUserDefaults standardUserDefaults]objectForKey:@"ExistEventID"];
+//                对比
+                for (int i = 0; i < [arrayExistEventID count]; i++) {
+                    if ([arrayExistEventID[i] isEqualToString:currentEventID]) {
+                        change = NO;
+                        break;
+                    }
+                    else change = YES;
+                }
                 
-                
-                
+                if (change)
+                {
+                    NSMutableArray *arrayTemp = [NSMutableArray arrayWithArray:arrayExistEventID];
+                    
+                    
+                    [arrayTemp addObject:currentEventID];
+                    [[NSUserDefaults standardUserDefaults] setObject:arrayTemp forKey:@"ExistEventID"];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+               
                
 
                 
@@ -111,9 +129,12 @@
                 event.event_price = [key objectForKey:@"event_price"];
                 NSError *error;
                 [context save:&error];
+                
+                }
+                
+                
             }
-            if (change == YES)
-                break;
+            if (!change) break;
 
          }
         
