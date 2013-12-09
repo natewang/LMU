@@ -12,7 +12,7 @@
 #import "Event.h"
 
 
-#define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=%d&p=1"
+#define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=1&p=%d"
 //_ashx/GetIndexEvents.ashx?s=1&p=1
 
 @interface PersistencyManager ()
@@ -72,17 +72,24 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
-        for (int i =1 ; i <= 1 ; i++) {
+        for (int i =1 ; i <= 10 ; i++) {
             //        获取多次活动信息
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:EVENTURL,i]]];
             
             NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             NSEnumerator *enumerator = [dicData objectEnumerator];
             id key;
-            
-            
-            
+            BOOL change = NO;//判断是狗需要存储
+
             while (key = [enumerator nextObject]) {
+                
+                NSString *currentEventID = [key valueForKey:@"event_id"];
+//                判断下载的活动是否已经储存了
+                
+                
+                
+               
+
                 
                 Event *event = [NSEntityDescription insertNewObjectForEntityForName:@"Event" inManagedObjectContext:context];
                 //            write in the file
@@ -105,6 +112,8 @@
                 NSError *error;
                 [context save:&error];
             }
+            if (change == YES)
+                break;
 
          }
         
@@ -130,6 +139,8 @@
     });
     
     }
+
+
 
 
 
