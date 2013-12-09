@@ -8,6 +8,7 @@
 
 #import "MainCell.h"
 #import "EventView.h"
+#import "Event.h"
 
 @implementation MainCell
 @synthesize eventView;
@@ -17,7 +18,6 @@
     if (self) {
         eventView = [[EventView alloc] initWithFrame:CGRectMake(5.0f, 0.0f, 310.0f, 290.0f)];
         [self.contentView addSubview:eventView];
-        eventView.imageView.image = [UIImage imageNamed:@"waitImg.png"];
 //        圆角 阴影
         eventView.layer.cornerRadius = 6.0f;
         eventView.layer.shadowColor = [UIColor colorWithRed:163.0/255 green:163.0/255 blue:163.0/255 alpha:1].CGColor;
@@ -27,6 +27,8 @@
     }
     return self;
 }
+
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {

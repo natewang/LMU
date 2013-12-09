@@ -11,7 +11,10 @@
 #import "Event.h"
 #import "LMUAppDelegate.h"
 #import "LibraryAPI.h"
-
+#import "SDWebImage/UIImageView+WebCache.h"
+#import "UIColor+Crayola.h"
+#import "EventView.h"
+#import "LMUEventDetailViewController.h"
 
 #define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=1&p=1"
 
@@ -41,7 +44,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    tableView.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor crayolaPeriwinkleColor];
+    tableView.backgroundColor = [UIColor crayolaPeriwinkleColor];
     self.title = @"Events";
     
 //    显示活动的tableView
@@ -149,21 +153,44 @@
 {
     MainCell *cell = [atableView dequeueReusableCellWithIdentifier:@"MainCell"];
      tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    Event *eventInfo = events[indexPath.row];
+    
+    
+    
+
     if (!cell) {
-        cell = [[MainCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MainCell"];
+        
+        cell = [[MainCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"MainCell"];
+        
         
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor crayolaPeriwinkleColor];
 
     
-    Event *eventInfo = events[indexPath.row];
-    cell.textLabel.text = [eventInfo valueForKey:@"event_name"];
+    NSString *urlstring = [eventInfo valueForKey:@"event_img_thumb"];
+    NSURL *imageURL = [NSURL URLWithString:urlstring];
+    [cell.eventView.imageView setImageWithURL:imageURL
+              placeholderImage:[UIImage imageNamed:@"userBG.png"]
+     ];
+
+    
+    
+    
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 300;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Event *eventInfo = events[indexPath.row];
+    LMUEventDetailViewController *vcEventDetail = [[LMUEventDetailViewController alloc]init];
+    vcEventDetail.eventInfo = eventInfo;
+    [self.navigationController pushViewController:vcEventDetail animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,9 @@
 
 #import "DEMOMenuViewController.h"
 #import "LMUHomeViewController.h"
+#import "DEMOSecondViewController.h"
+#import "ProfileViewController.h"
+#import "SettingsViewController.h"
 
 @interface DEMOMenuViewController ()
 
@@ -51,9 +54,20 @@
             [self.sideMenuViewController hideMenuViewController];
             break;
         case 1:
-//            navigationController.viewControllers = @[[[DEMOSecondViewController alloc] init]];
+            navigationController.viewControllers = @[[[DEMOSecondViewController alloc] init]];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 2:
+            navigationController.viewControllers = @[[[ProfileViewController alloc]init]];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 3:
+            navigationController.viewControllers = @[[[SettingsViewController alloc]init]];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
+        case 4:
+            //            退出登陆的代码
+
         default:
             break;
     }

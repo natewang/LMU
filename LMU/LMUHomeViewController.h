@@ -1,5 +1,5 @@
 //
-//  LMUHomeViewController.h
+//  LMUHomeViewController.h 主界面
 //  LMU
 //
 //  Created by wangxu on 13-12-3.

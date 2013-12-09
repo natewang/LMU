@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "EventView.h"
+#import "Event.h"
 @interface MainCell : UITableViewCell
 {
     EventView *eventView;
 }
 @property (nonatomic, strong) EventView *eventView;
+
+    
+
 
 @end

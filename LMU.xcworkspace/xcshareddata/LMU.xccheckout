@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>79E3C183-1437-4803-B713-EA3076191746</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LMU</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>351E00B4-FBEC-4E26-8578-803F26C4AC39</key>
+		<string>https://github.com/natewang/LMU.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>LMU.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>351E00B4-FBEC-4E26-8578-803F26C4AC39</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/natewang/LMU.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>351E00B4-FBEC-4E26-8578-803F26C4AC39</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>351E00B4-FBEC-4E26-8578-803F26C4AC39</string>
+			<key>IDESourceControlWCCName</key>
+			<string>LMU</string>
+		</dict>
+	</array>
+</dict>
+</plist>

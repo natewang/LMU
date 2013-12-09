@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
+
 
 @interface EventView : UIView
 
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) UILabel *labelEventTime;
 
-- (id) initWithFrame:(CGRect)frame eventImg: (NSString *) eventImgURl;
 
 
 
