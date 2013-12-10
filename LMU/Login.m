@@ -8,6 +8,7 @@
 
 #import "Login.h"
 #import "MyMD5.h"
+#import "SVProgressHUD/SVProgressHUD.h"
 
 @interface  Login () <UIGestureRecognizerDelegate>
 
@@ -109,8 +110,13 @@ UITextField *textUsername;
     
     NSString *stringForLoginUrl = [[NSString alloc]initWithFormat:@"http://www.livemeetup.com/_ashx/Login.ashx?appkey=b1a16d4bf979bcaf8453e3e57f70d762&uemail=%@&upass=%@",name,pwd];
     
-
+    
     NSData *dataLogin = [NSData dataWithContentsOfURL:[NSURL URLWithString:stringForLoginUrl]];
+    
+    if (dataLogin== nil) {
+        [SVProgressHUD showErrorWithStatus:@"no network"];
+        return;
+    }
     
     NSDictionary *dicResponse = [NSJSONSerialization JSONObjectWithData:dataLogin options:NSJSONReadingMutableLeaves error:nil];
     NSLog(@"dicResponse-->%@",dicResponse);
@@ -160,6 +166,7 @@ UITextField *textUsername;
         [self dismissViewControllerAnimated:YES completion:nil];
         
     }
+    else [SVProgressHUD showErrorWithStatus:@"login failed"];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *) textField
