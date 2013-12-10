@@ -11,7 +11,6 @@
 #import "LMUAppDelegate.h"
 #import "Event.h"
 
-
 #define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=1&p=%d"
 //_ashx/GetIndexEvents.ashx?s=1&p=1
 
@@ -45,6 +44,11 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
         [fetchRequest setEntity:entity];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"event_id" ascending:NO];
+
+        NSArray *arraySort= [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+        [fetchRequest setSortDescriptors:arraySort];
+
         
         NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
         for (Event *event in fetchedObjects)
@@ -75,6 +79,17 @@
         for (int i =1 ; i <= 10 ; i++) {
             //        获取多次活动信息
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:EVENTURL,i]]];
+            if (data == nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"NoNetWork" object:nil];
+                    
+                });
+
+                return;
+    
+            }
+            
             
             NSDictionary *dicData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
             NSEnumerator *enumerator = [dicData objectEnumerator];
@@ -101,7 +116,7 @@
                     NSMutableArray *arrayTemp = [NSMutableArray arrayWithArray:arrayExistEventID];
                     
                     
-                    [arrayTemp addObject:currentEventID];
+                    [arrayTemp insertObject:currentEventID atIndex:0];
                     [[NSUserDefaults standardUserDefaults] setObject:arrayTemp forKey:@"ExistEventID"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     
@@ -141,6 +156,10 @@
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
         [fetchRequest setEntity:entity];
+//        排训
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:@"event_id" ascending:NO];
+        NSArray *arraySort= [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+        [fetchRequest setSortDescriptors:arraySort];
         
         NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:nil];
         [events removeAllObjects];

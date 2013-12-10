@@ -13,10 +13,10 @@
             buildForProfiling = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
-               BuildableName = "libPods-RESideMenu.a"
-               BlueprintIdentifier = "4A68B88E5A654F44B97B11D8"
+               BuildableName = "libPods-SVProgressHUD.a"
+               BlueprintIdentifier = "9F5141792CD74A559D3B1619"
                BuildableIdentifier = "primary"
-               BlueprintName = "Pods-RESideMenu"
+               BlueprintName = "Pods-SVProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

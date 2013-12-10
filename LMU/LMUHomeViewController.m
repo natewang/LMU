@@ -15,6 +15,7 @@
 #import "UIColor+Crayola.h"
 #import "EventView.h"
 #import "LMUEventDetailViewController.h"
+#import "SVProgressHUD/SVProgressHUD.h"
 
 #define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=1&p=1"
 
@@ -66,7 +67,7 @@
 //    注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getNewEvents:) name:@"getNewEvents" object:nil];
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noNetWorking) name:@"NoNetWork" object:nil];
     
     
     
@@ -124,8 +125,13 @@
     NSLog(@"evnets-->%@",events);
     
     [tableView reloadData];
+    [SVProgressHUD showSuccessWithStatus:@""];
 }
 
+- (void) noNetWorking
+{
+    [SVProgressHUD showErrorWithStatus:@"no network"];
+}
 
 - (void) refresh: (id) sender
 {

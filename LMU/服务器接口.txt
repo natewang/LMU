@@ -1,0 +1,62 @@
+登录-------http://www.livemeetup.com/_ashx/Login.ashx?uemail=xxx&upass=xxx
+
+
+
+
+注册-------http://www.livemeetup.com/_ashx/Register.ashx?action=reg&uemail=" + URLencode(RegUserEmail) + "&uname=" + URLencode(RegUserName) + "&upass=" + $.md5(RegUserPwd) 
+
+
+json
+
+活动地址
+
+http://www.livemeetup.com/_ashx/GetEventInfo.ashx?eid=
+
+http://www.livemeetup.com/_ashx/GetIndexEvents.ashx
+
+http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=10&p=1
+
+个人信息
+http://www.livemeetup.com/_ashx/GetUserInfo.ashx?uid=159
+
+活动参与人员信息
+http://www.livemeetup.com/_ashx/GetEventParticipants.ashx?eid=20&s=10&p=1
+
+
+参加活动
+http://www.livemeetup.com/_ashx/UserJoinEvent.ashx?eid=26
+
+获取token的方法
+http://www.livemeetup.com/_ashx/Login.ashx?appkey=b1a16d4bf979bcaf8453e3e57f70d762&uemail=xxx&upass=xxx     md5加密
+
+
+参加活动
+http://www.livemeetup.com/_ashx/UserJoinEvent.ashx?uid=159&eid=63&token= c3a3774c55a6bb9848909b32b9a616d2   md5(appkey+md5(token))
+
+
+给某个用户留言
+
+http://www.livemeetup.com/_ashx/UserAction.ashx?action=add&type=1&to=" + uid + "&totype=" + 2 + "&content=" + URLencode(commentContent)"&uid=159&token=c3a3774c55a6bb9848909b32b9a616d2
+
+示例 
+http://www.livemeetup.com/_ashx/UserAction.ashx?action=add&type=1&to=129&totype=2&content=我是编码后的评论&uid=159&token=c3a3774c55a6bb9848909b32b9a616d2
+
+http://www.livemeetup.com/_ashx/UserAction.ashx?action=add&type=1&to=1&totype=2&content=Haha%20%20&uid=159&token=bc0fec0f7f3925766d32c2a5d1608287
+
+给活动评论
+totype =1
+
+
+谷歌地图获取地理编码
+http://maps.googleapis.com/maps/api/geocode/json?address=“37 Fuzhou Road, Floor 6, Shanghai, China（地址编码）”&sensor=true
+
+微信ID
+wx16ee52902447fc3f
+
+
+调试脚本
+export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate
+if [ "${PLATFORM_NAME}" == "iphoneos" ] || [ "${PLATFORM_NAME}" == "ipados" ]; then
+/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py "my.company.${PROJECT_NAME}" "${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent";
+codesign -f -s "iPhone Developer" --entitlements "${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent" "${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/"
+fi
