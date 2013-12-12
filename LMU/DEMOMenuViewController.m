@@ -13,7 +13,9 @@
 #import "SettingsViewController.h"
 
 @interface DEMOMenuViewController ()
-
+{
+    UIAlertView *alert;
+}
 @property (strong, readwrite, nonatomic) UITableView *tableView;
 
 @end
@@ -67,7 +69,10 @@
             break;
         case 4:
             //            退出登陆的代码
-
+            alert = [[UIAlertView alloc]initWithTitle:@"logout?" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"YES", nil];
+            [alert show];
+            break;
+            
         default:
             break;
     }
@@ -113,6 +118,8 @@
     
     return cell;
 }
+
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
