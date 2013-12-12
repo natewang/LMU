@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "LMUEvent.h"
+
+
+
 @interface LibraryAPI : NSObject
 
 + (LibraryAPI *) sharedInstance;
@@ -16,6 +19,11 @@
 - ( void)getNewEvents;
 
 - (void) addEvent: (LMUEvent *) event atIndex: (int) index;
+
+- (void) startDownloadWithUrl: (NSString *) url withMethodName: (NSString *) methodName;
+
+- (void) saveUserKey : (NSString *) userID token: (NSString *) token;
+- (NSDictionary *) getUserKey;
 
 
 

@@ -59,6 +59,7 @@
 		78D38A241855CF84006D1010 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D38A231855CF84006D1010 /* Login.m */; };
 		78D38A271855CF92006D1010 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D38A261855CF92006D1010 /* MyMD5.m */; };
 		78D38A2B1856FFE3006D1010 /* 服务器接口.txt in Resources */ = {isa = PBXBuildFile; fileRef = 78D38A2A1856FFE3006D1010 /* 服务器接口.txt */; };
+		78D38A2F18571DA7006D1010 /* LMUUserMange.m in Sources */ = {isa = PBXBuildFile; fileRef = 78D38A2E18571DA7006D1010 /* LMUUserMange.m */; };
 		FE67C1D0DB3040EFBFF31C70 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3351ABEE88DF48BFAA8AC2BE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +167,8 @@
 		78D38A251855CF92006D1010 /* MyMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMD5.h; sourceTree = "<group>"; };
 		78D38A261855CF92006D1010 /* MyMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMD5.m; sourceTree = "<group>"; };
 		78D38A2A1856FFE3006D1010 /* 服务器接口.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "服务器接口.txt"; sourceTree = "<group>"; };
+		78D38A2D18571DA7006D1010 /* LMUUserMange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMUUserMange.h; sourceTree = "<group>"; };
+		78D38A2E18571DA7006D1010 /* LMUUserMange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMUUserMange.m; sourceTree = "<group>"; };
 		A756BCD754F44E879259FDC5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -391,6 +394,8 @@
 		78D38A2C18570049006D1010 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				78D38A2D18571DA7006D1010 /* LMUUserMange.h */,
+				78D38A2E18571DA7006D1010 /* LMUUserMange.m */,
 				78933A9B184EC2C300D72D1A /* LibraryAPI.h */,
 				78933A9C184EC2C300D72D1A /* LibraryAPI.m */,
 				78933A98184EC19E00D72D1A /* HTTPClient.h */,
@@ -547,6 +552,7 @@
 				7860F0D2184D84F200E1A6E4 /* MainCell.m in Sources */,
 				78D38A211855CE4E006D1010 /* DEMOSecondViewController.m in Sources */,
 				78D38A131855CBF9006D1010 /* NSDate+convenience.m in Sources */,
+				78D38A2F18571DA7006D1010 /* LMUUserMange.m in Sources */,
 				78933ADC185177E100D72D1A /* UIColor+Crayola.m in Sources */,
 				78D38A171855CBF9006D1010 /* VRGCalendarView.m in Sources */,
 				78933AD218516DF900D72D1A /* SDWebImageDownloaderOperation.m in Sources */,

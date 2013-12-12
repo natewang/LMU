@@ -9,9 +9,11 @@
 #import "ProfileViewController.h"
 #import "QuartzCore/QuartzCore.h"
 #import "Login.h"
+#import "LibraryAPI.h"
 @interface ProfileViewController ()
 {
     UIImageView *imageHead;
+    UILabel *labelName;
 }
 
 @end
@@ -38,7 +40,10 @@
 //    圆角 阴影头像
     imageHead = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 50.0f, 50.0f)];
     imageHead.center = CGPointMake(160, 150);
-    
+    labelName = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,320, 50)];
+    labelName.center = CGPointMake(160, 200);
+    labelName.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:labelName];
     
     UIView *view = [[UIView alloc]initWithFrame:imageHead.frame];
     view.backgroundColor = [UIColor redColor];
@@ -48,9 +53,36 @@
     view.layer.shadowOpacity = 1.0f;
     view.layer.shadowColor = [UIColor blackColor].CGColor;
     [self.view addSubview:view];
-
     
-    imageHead.image = [UIImage imageNamed:@"eventImg.png"];
+    
+    imageHead.image = [UIImage imageNamed:@"userBG.png"];
+
+//   获取用户信息
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSDictionary *dicUserInfo = [[LibraryAPI sharedInstance] getUserKey];
+        NSString *userID = [dicUserInfo objectForKey:@"UserID"];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.livemeetup.com/_ashx/GetUserInfo.ashx?uid=%@",userID]];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:url] options:NSJSONReadingMutableLeaves error:nil];
+        NSURL *urlImage = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.livemeetup.com/%@",[dic objectForKey:@"user_img"]]];
+                           
+                           UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:urlImage]];
+                           
+        if (image)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+                imageHead.image = image;
+                labelName.text = [dic objectForKey:@"user_nickname"];
+            
+            });
+        }
+    });
+    
+    
+    
+    
+    
     imageHead.layer.cornerRadius = 6.0f;
     imageHead.layer.masksToBounds = YES;
 //    imageHead.layer.borderWidth = 1.0f;
@@ -89,7 +121,6 @@
     Login *loginVC = [[Login alloc]init];
     [self presentViewController:loginVC animated:YES completion:nil];
 }
-
 
 
 - (void) drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx

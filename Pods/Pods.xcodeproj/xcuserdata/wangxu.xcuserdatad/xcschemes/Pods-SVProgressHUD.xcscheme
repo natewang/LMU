@@ -7,47 +7,47 @@
       parallelizeBuildables = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
             buildForArchiving = "YES"
+            buildForTesting = "YES"
             buildForProfiling = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            buildForRunning = "YES">
             <BuildableReference
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BlueprintIdentifier = "A4AFD873380640EC8B06CE96"
                BuildableName = "libPods-SVProgressHUD.a"
-               BlueprintIdentifier = "9F5141792CD74A559D3B1619"
-               BuildableIdentifier = "primary"
                BlueprintName = "Pods-SVProgressHUD"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BuildableIdentifier = "primary">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      shouldUseLaunchSchemeArgsEnv = "YES"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      buildConfiguration = "Debug"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB">
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
       <Testables>
       </Testables>
    </TestAction>
    <LaunchAction
-      debugDocumentVersioning = "YES"
-      ignoresPersistentStateOnLaunch = "NO"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      buildConfiguration = "Debug"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      debugDocumentVersioning = "YES"
       launchStyle = "0"
-      allowLocationSimulation = "YES"
+      ignoresPersistentStateOnLaunch = "NO"
       useCustomWorkingDirectory = "NO"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB">
+      allowLocationSimulation = "YES"
+      buildConfiguration = "Debug">
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      savedToolIdentifier = ""
       debugDocumentVersioning = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      buildConfiguration = "Release"
-      useCustomWorkingDirectory = "NO">
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Release">
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

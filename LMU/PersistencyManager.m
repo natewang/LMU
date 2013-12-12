@@ -10,6 +10,7 @@
 #import "LMUEvent.h"
 #import "LMUAppDelegate.h"
 #import "Event.h"
+#import "MyMD5.h"
 
 #define EVENTURL @"http://www.livemeetup.com/_ashx/GetIndexEvents.ashx?s=1&p=%d"
 //_ashx/GetIndexEvents.ashx?s=1&p=1
@@ -59,6 +60,21 @@
     }
     return  self;
 }
+
++ (PersistencyManager *) sharedInstance
+{
+    static PersistencyManager *_sharedInstance = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        
+        _sharedInstance = [[PersistencyManager alloc]init];
+        
+        
+    });
+    return _sharedInstance;
+}
+
+
 
 -(NSArray *)getEvents
 {
@@ -181,7 +197,53 @@
     }
 
 
+//保存用户appkey
+- (void) saveUserKey:(NSString *)userID token:(NSString *)token
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //获取应用程序沙盒的Documents目录
+        NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *plistPath1 = [paths objectAtIndex:0];
+        
+        //得到完整的文件名
+        NSString *filename=[plistPath1 stringByAppendingPathComponent:@"UserInfoList.plist"];
+        
+        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+        //        NSLog(@"%@", data);
+        
+        //添加两项内容 用户ID  一个完整的token md5(appkey+md5(token))
+        
+        NSMutableString *stringToken = [[NSMutableString alloc] initWithFormat:@"20130716%@",[MyMD5 md5:token]];
+        
+        NSString *myToken = [[NSString alloc] initWithFormat:@"%@",[MyMD5 md5:stringToken]];
+        
+        //        存储需要的两个数据
+        [data setValue:myToken forKey:@"myToken"];
+        
+        NSLog(@"myToken--%@",myToken);
+        
+        [data setValue:userID forKey:@"UserID"];
+        
+        
+        NSLog(@"data-->%@",data);
+        
+        
+        //输入写入
+        [data writeToFile:filename atomically:YES];
+        
+    });
 
+    
+}
+
+- (NSDictionary *) getUserkKey
+{
+   NSString  *filename = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/UserInfoList.plist"];
+    NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:filename];
+    return dic;
+    
+}
 
 
 

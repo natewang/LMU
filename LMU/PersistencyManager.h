@@ -10,10 +10,17 @@
 
 @interface PersistencyManager : NSObject
 
++ (PersistencyManager *) sharedInstance;
 - (NSArray *) getEvents;
 - (void) getNewEvents;
+
+
 - (void) saveImage: (UIImage *) image filename : (NSString *)filename;
 
 - (UIImage *) getImage: (NSString *) filename;
+
+- (void) saveUserKey : (NSString *) userID token: (NSString *) token;
+- (NSDictionary *) getUserkKey;
+
 
 @end

@@ -9,8 +9,10 @@
 #import "Login.h"
 #import "MyMD5.h"
 #import "SVProgressHUD/SVProgressHUD.h"
+#import "LMUUserMange.h"
+#import "AFNetworking/AFNetworking.h"
 
-@interface  Login () <UIGestureRecognizerDelegate>
+@interface  Login () <UIGestureRecognizerDelegate,loginDelegate>
 
 @end
 
@@ -123,6 +125,7 @@ UITextField *textUsername;
     
 //获取用户id 和 token 以便以后使用
     
+    
     myID = [dicResponse objectForKey:@"uid"];
     NSString *token = [NSString stringWithFormat:@"%@",[dicResponse objectForKey:@"token"]];
 
@@ -169,6 +172,27 @@ UITextField *textUsername;
     else [SVProgressHUD showErrorWithStatus:@"login failed"];
 }
 
+- (void) loginAction
+{
+    [[LMUUserMange sharedInstace] loginWith:textUsername.text password:textPassword.text methodName:@"login"];
+    [LMUUserMange sharedInstace].delegate = self;
+    
+    
+    
+    
+}
+
+//logindelegate的代理方法
+- (void) loginSuccess:(BOOL)isSuccessed
+{
+//    判断是否登陆成功
+    if (isSuccessed) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+
+    
+}
+
 - (BOOL) textFieldShouldReturn:(UITextField *) textField
 {
     if (textField == textUsername) {
@@ -182,7 +206,7 @@ UITextField *textUsername;
         [textPassword resignFirstResponder];
 //        获取网络数据
         
-        [self login];
+        [self loginAction];
         
     }
     return YES;

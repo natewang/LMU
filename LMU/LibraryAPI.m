@@ -65,24 +65,22 @@
     
 }
 
-- (void) downloadImage: (NSNotification *) notification
+
+
+- (void) startDownloadWithUrl:(NSString *)url withMethodName:(NSString *)methodName
 {
-    UIImageView *imageView = notification.userInfo[@"imageView"];
-    NSString *imgUrl = notification.userInfo[@"imgURL"];
+        
+}
+
+- (void) saveUserKey:(NSString *)userID token:(NSString *)token
+{
+    [[PersistencyManager sharedInstance] saveUserKey:userID token:token];
     
-    imageView.image = [persistencyManager getImage:[imgUrl lastPathComponent]];
-    if (imageView.image == nil) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            UIImage *image = [httpClient downloadImage:imgUrl];
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                imageView.image = image;
-                [persistencyManager saveImage:image filename:[imgUrl lastPathComponent]];
-                
-            });
-            
-        });
-    }
+}
+
+- (NSDictionary *) getUserKey
+{
+    return [[PersistencyManager sharedInstance]getUserkKey];
 }
 
 - (void)dealloc
